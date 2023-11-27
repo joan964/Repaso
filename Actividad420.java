@@ -37,10 +37,13 @@ public class Actividad420 {
              mensula2=(1+interesMensual);
              caclculoMensulal=Math.pow(mensula2,multAños);
              calculoFinal=capitalInvertit*caclculoMensulal;
-            String indicació=obtenirIndicacio(capitalInvertit,calculoFinal);
+            double ajudaGovern=obtenirAjudaGovern(calculoFinal);
+            double calculoFinalIndicaciones=calculoFinal+ajudaGovern;
+            String indicació=obtenirIndicacio(capitalInvertit,calculoFinalIndicaciones);
 
             System.out.printf("%d\t \t%.2f",i,calculoFinal);
-            double ajudaGovern=obtenirAjudaGovern(calculoFinal);
+
+
             System.out.printf(" (+%.2f)\t \t"+indicació+"\n",ajudaGovern);
         }
         return calculoFinal;
