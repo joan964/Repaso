@@ -24,12 +24,18 @@ public class Actividad420 {
         double caclculoMensulal;
         double calculoFinal = 0;
 
+        introduccionCalculos();
+
         for (int i = 0; i < numAnys; i++) {
              multAños=i*12;
              mensula2=(1+interesMensual);
              caclculoMensulal=Math.pow(mensula2,multAños);
              calculoFinal=capitalInvertit*caclculoMensulal;
-            System.out.println(calculoFinal);
+            String indicació=obtenirIndicacio(capitalInvertit,calculoFinal);
+
+            System.out.printf("%d     %.2f",i,calculoFinal);
+            double ajudaGovern=obtenirAjudaGovern(calculoFinal);
+            System.out.printf(" (+%.2f)         "+indicació+"\n",ajudaGovern);
         }
         return calculoFinal;
     }
@@ -67,9 +73,19 @@ public class Actividad420 {
     // Obtenir indicació gràfica sobre el rendiment de la inversió
     public static String obtenirIndicacio(double capitalInvertit, double totalObtingut) {
 
-        String primeraLinea="Any     Valor Futur(+ajuda)         Indicació";
-        String segundaLinea="=============================================";
-        return "hola";
+        double capital1=(capitalInvertit*0.25)+capitalInvertit;
+        double capital2=(capitalInvertit*0.50)+capitalInvertit;
+        double capital3=(capitalInvertit*0.75)+capitalInvertit;
+
+        if (totalObtingut<capital1){
+            return "\u2193";
+        } else if (totalObtingut>capital1 && totalObtingut<capital2) {
+            return "\u2192";
+        } else if (totalObtingut>capital2 && totalObtingut<capital3) {
+            return "\u2197";
+        }else {
+            return "\u2191";
+        }
     }
 
     public static void introduccion() {
@@ -109,6 +125,10 @@ public class Actividad420 {
         double anual1=interesAnual/100;
         double conversión=anual1/12;
         return conversión;
+    }
+    public static void introduccionCalculos(){
+        System.out.println("Any     Valor Futur(+ajuda)         Indicació");
+        System.out.println("=====================================");
     }
 
 }
