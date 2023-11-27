@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 public class Actividad420 {
 
+    private static final String COLOR_RESET = "\u001B[0m";
+    private static final String COLOR_ROIG = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String COLOR_GROC = "\u001B[33m";
+    private static final String COLOR_BLAU = "\u001B[36m";
+
     private static Scanner teclado;
 
     public static void main(String[] args) {
@@ -33,9 +39,9 @@ public class Actividad420 {
              calculoFinal=capitalInvertit*caclculoMensulal;
             String indicació=obtenirIndicacio(capitalInvertit,calculoFinal);
 
-            System.out.printf("%d     %.2f",i,calculoFinal);
+            System.out.printf("%d\t \t%.2f",i,calculoFinal);
             double ajudaGovern=obtenirAjudaGovern(calculoFinal);
-            System.out.printf(" (+%.2f)         "+indicació+"\n",ajudaGovern);
+            System.out.printf(" (+%.2f)\t \t"+indicació+"\n",ajudaGovern);
         }
         return calculoFinal;
     }
@@ -78,13 +84,13 @@ public class Actividad420 {
         double capital3=(capitalInvertit*0.75)+capitalInvertit;
 
         if (totalObtingut<capital1){
-            return "\u2193";
-        } else if (totalObtingut>capital1 && totalObtingut<capital2) {
-            return "\u2192";
-        } else if (totalObtingut>capital2 && totalObtingut<capital3) {
-            return "\u2197";
+            return COLOR_ROIG+"\u2193"+COLOR_RESET;
+        } else if (totalObtingut>=capital1 && totalObtingut<capital2) {
+            return COLOR_GROC+"\u2192"+COLOR_RESET;
+        } else if (totalObtingut>=capital2 && totalObtingut<capital3) {
+            return COLOR_BLAU+"\u2197"+COLOR_RESET;
         }else {
-            return "\u2191";
+            return ANSI_GREEN+"\u2191"+COLOR_RESET;
         }
     }
 
